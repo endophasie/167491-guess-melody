@@ -12,7 +12,7 @@ const KEY = {
   BASE: 18,
   FORWARD: 39,
   BACK: 37
-}
+};
 
 let activeScreen = 0;
 
