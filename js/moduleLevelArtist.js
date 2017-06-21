@@ -1,5 +1,9 @@
-const moduleLevelArtist = getElementFromTemplate(`
-  <section class="main main--level main--level-artist">
+import getElementFromTemplate from './getElementFromTemplate.js';
+import showScreen from './showScreen.js';
+import moduleLevelGenre from './moduleLevelGenre.js';
+
+export default () => {
+const moduleLevelArtistContent = getElementFromTemplate(`
     <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
       <circle
         cx="390" cy="390" r="370"
@@ -44,7 +48,14 @@ const moduleLevelArtist = getElementFromTemplate(`
         </div>
       </form>
     </div>
-  </section>
-`);
+`, `main--level main--level-artist`);
 
-export default moduleLevelArtist;
+const moduleLevelArtist = showScreen(moduleLevelArtistContent);
+const answerBlock = moduleLevelArtist.querySelector(`.main-answer`);
+
+answerBlock.addEventListener(`click`, () => {
+  moduleLevelGenre();
+}, true);
+
+  return moduleLevelArtist;
+}

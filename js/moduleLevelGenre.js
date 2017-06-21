@@ -1,5 +1,9 @@
-const moduleLevelGenre = getElementFromTemplate(`
-  <section class="main main--level main--level-genre">
+import getElementFromTemplate from './getElementFromTemplate.js';
+import showScreen from './showScreen.js';
+//import moduleResult from './moduleResultFail.js';
+
+export default () => {
+const moduleLevelGenreContent = getElementFromTemplate(`
     <h2 class="title">Выберите инди-рок треки</h2>
     <form class="genre">
       <div class="genre-answer">
@@ -26,9 +30,23 @@ const moduleLevelGenre = getElementFromTemplate(`
         <label class="genre-answer-check" for="a-4"></label>
       </div>
 
-      <button class="genre-answer-send" type="submit">Ответить</button>
+      <button class="genre-answer-send" type="submit" disabled="disabled">Ответить</button>
     </form>
-  </section>
-`);
+`, `main--level main--level-genre`);
 
-export default moduleLevelGenre;
+const moduleLevelGenre = showScreen(moduleLevelGenreContent);
+const btnAnswer = moduleLevelGenre.querySelector(`.genre-answer-send`);
+const checkAnswer = moduleLevelGenre.querySelector(`[name=answer]`);
+
+if(checkAnswer.checked) {
+  btnAnswer.setAttribute(`disabled`, false);
+}
+
+btnAnswer.addEventListener(`click`, () => {
+  //moduleResult();
+  console.log('clicked')
+});
+
+return moduleLevelGenre;
+
+}
